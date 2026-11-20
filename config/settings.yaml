@@ -1,0 +1,70 @@
+scan:
+  timeout: 10
+  max_redirects: 10
+  threads: 5
+  http_retries: 2
+  http_pool_size: 50
+  request_delay: 0.0
+  verify_tls: true
+
+tools:
+  nmap:
+    enabled: true
+    auto_install: true
+  nuclei:
+    enabled: true
+    auto_install: true
+  ffuf:
+    enabled: true
+    auto_install: true
+  subfinder:
+    enabled: true
+    auto_install: true
+  httpx:
+    enabled: true
+    auto_install: true
+  katana:
+    enabled: true
+    auto_install: true
+  dalfox:
+    enabled: true
+    auto_install: true
+  sqlmap:
+    enabled: true
+    auto_install: true
+  gobuster:
+    enabled: true
+    auto_install: true
+  hydra:
+    enabled: true
+    auto_install: true
+  wpscan:
+    enabled: true
+    auto_install: true
+  kerbrute:
+    enabled: true
+    auto_install: false
+  whatweb:
+    enabled: true
+    auto_install: true
+
+wordlists:
+  directories: /usr/share/seclists/Discovery/Web-Content/raft-small-directories.txt
+  passwords: /usr/share/seclists/Passwords/xato-net-10-million-passwords-10000.txt
+  subdomains: /usr/share/seclists/Discovery/DNS/namelist.txt
+  usernames: /usr/share/seclists/Usernames/xato-net-10-million-usernames.txt
+
+reports:
+  output_dir: ./reports
+  formats:
+    - html
+    - json
+    - markdown
+    - txt
+    - csv
+
+proxy:
+  enabled: false
+  url: ""
+
+user_agent: "SysVoidScan/2.0.0"

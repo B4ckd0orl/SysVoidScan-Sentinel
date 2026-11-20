@@ -1,0 +1,16 @@
+[Unit]
+Description=SysVoidScan - Web Security Testing Scanner
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/sysvoidscan
+ExecStart=/usr/bin/python3 /opt/sysvoidscan/main.py --batch
+Restart=on-failure
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

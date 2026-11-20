@@ -1,0 +1,136 @@
+{
+  "target": {
+    "url": "http://test.example.com",
+    "domain": "test.example.com",
+    "ip": "93.184.216.34",
+    "status": "200",
+    "title": "Test Target Site",
+    "server": "nginx/1.18.0",
+    "technologies": [
+      {"name": "nginx", "version": "1.18.0"},
+      {"name": "PHP", "version": "7.4.3"},
+      {"name": "WordPress", "version": "6.4.2"}
+    ],
+    "headers": {
+      "Content-Type": "text/html; charset=UTF-8",
+      "Server": "nginx/1.18.0",
+      "X-Powered-By": "PHP/7.4.3",
+      "Set-Cookie": "session=abc123; Path=/"
+    },
+    "cookies": [
+      {"name": "session", "value": "abc123", "domain": ".example.com", "path": "/"}
+    ],
+    "redirect_chain": []
+  },
+  "recon": {
+    "whois": {
+      "registrar": "Example Registrar",
+      "creation_date": "2010-01-01",
+      "expiration_date": "2025-01-01"
+    },
+    "dns": {
+      "A": ["93.184.216.34"],
+      "AAAA": ["2606:2800:220:1:248:1893:25c8:1946"],
+      "MX": ["mail.example.com"],
+      "NS": ["ns1.example.com", "ns2.example.com"]
+    },
+    "subdomains": [
+      {"subdomain": "www.example.com", "ip": "93.184.216.34"},
+      {"subdomain": "mail.example.com", "ip": "93.184.216.35"},
+      {"subdomain": "api.example.com", "ip": "93.184.216.36"}
+    ],
+    "ports": [
+      {"port": 80, "protocol": "tcp", "service": "http"},
+      {"port": 443, "protocol": "tcp", "service": "https"},
+      {"port": 22, "protocol": "tcp", "service": "ssh"}
+    ],
+    "services": [
+      {"port": 80, "protocol": "tcp", "service": "nginx/1.18.0"},
+      {"port": 443, "protocol": "tcp", "service": "nginx/1.18.0"},
+      {"port": 22, "protocol": "tcp", "service": "OpenSSH_8.2"}
+    ],
+    "certificates": [],
+    "emails": ["admin@example.com"],
+    "history": []
+  },
+  "crawl": {
+    "urls": [
+      "http://test.example.com/",
+      "http://test.example.com/about",
+      "http://test.example.com/contact",
+      "http://test.example.com/login",
+      "http://test.example.com/api/v1/users"
+    ],
+    "forms": [
+      {
+        "url": "http://test.example.com/login",
+        "method": "POST",
+        "params": [
+          {"name": "username", "type": "text"},
+          {"name": "password", "type": "password"}
+        ]
+      }
+    ],
+    "links": [],
+    "scripts": [],
+    "images": [],
+    "iframes": [],
+    "emails": ["admin@example.com"],
+    "phones": [],
+    "comments": [],
+    "hidden_fields": [
+      {"url": "http://test.example.com/form", "name": "csrf_token", "value": "tok123"}
+    ]
+  },
+  "vulnerabilities": {
+    "sqli": [
+      {
+        "type": "error_based_sqli",
+        "url": "http://test.example.com/search",
+        "param": "q",
+        "method": "GET",
+        "payload": "' OR '1'='1",
+        "evidence": "sql syntax",
+        "severity": "high"
+      }
+    ],
+    "xss": [
+      {
+        "type": "reflected_xss",
+        "url": "http://test.example.com/search",
+        "param": "q",
+        "method": "GET",
+        "payload": "<script>alert(1)</script>",
+        "context": "text_node",
+        "severity": "medium"
+      }
+    ],
+    "lfi": [],
+    "ssrf": [],
+    "open_redirect": [],
+    "info_disclosure": [
+      {
+        "type": "email",
+        "match": "admin@example.com",
+        "severity": "info"
+      }
+    ]
+  },
+  "scan_info": {
+    "start_time": "2024-01-15T10:00:00",
+    "end_time": "2024-01-15T10:05:30",
+    "duration": "00:05:30",
+    "scanner_version": "2.0.0",
+    "modules_run": ["recon", "sqli", "xss", "lfi", "fuzzing"],
+    "errors": [],
+    "warnings": []
+  },
+  "findings_summary": {
+    "critical": 0,
+    "high": 1,
+    "medium": 1,
+    "low": 0,
+    "info": 1,
+    "total": 3
+  }
+}

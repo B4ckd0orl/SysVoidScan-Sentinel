@@ -1,0 +1,57 @@
+# ============================================================================
+# SysVoidScan - Git Ignore
+# ============================================================================
+
+# Reports (keep example only)
+reports/*
+!reports/.gitkeep
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+
+# Environment
+.env
+.venv/
+venv/
+env/
+
+# Database
+*.db
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+*.egg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Temporary
+*.tmp
+*.bak
+
+# --- Limpieza (añadido local) ---------------------------------
+
+# Cachés y ejecuciones de prueba
+.pytest_cache/
+test_runs/
+evidence/
+
+# Scripts de parcheo desechables (no forman parte del proyecto)
+fix_*.py
+debug_*.py
+apply_fixes.py

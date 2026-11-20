@@ -1,0 +1,23 @@
+# ============================================================================
+# SysVoidScan - Docker Compose Configuration
+# ============================================================================
+
+version: "3.8"
+
+services:
+  sysvoidscan:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: sysvoidscan:latest
+    container_name: sysvoidscan
+    volumes:
+      - ./reports:/app/reports
+      - ./config:/app/config
+      - ./plugins:/app/plugins
+    network_mode: host
+    environment:
+      - PYTHONUNBUFFERED=1
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
